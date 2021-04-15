@@ -15,7 +15,6 @@ export default () => {
   return (
     <SafeAreaView style={{flex: 1}}>
       <KeyboardAvoidingView style={{flex: 1}} behavior="padding">
-        <AddItem />
         <FlatList
           data={nachos}
           renderItem={({item, index}) => (
@@ -27,6 +26,7 @@ export default () => {
           )}
           keyExtractor={item => item.id}
           ItemSeparatorComponent={() => <Separator />}
+          ListHeaderComponent={() =>  <AddItem />}
         />
       </KeyboardAvoidingView>
     </SafeAreaView>
