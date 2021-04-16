@@ -7,6 +7,7 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
 
 const styles = StyleSheet.create({
   container: {
@@ -37,15 +38,25 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
   },
+  leftAction: {
+    flex: 1,
+    backgroundColor: '#388e3c',
+    justifyContent: 'center',
+  },
+  actionText: {
+    color: '#fff',
+    fontWeight: '600',
+    padding: 20,
+  },
 });
 
 export const Separator = () => <View style={styles.separator} />;
+const LeftActions = () => (
+  <View style={styles.leftAction}>
+    <Text style={styles.actionText}>Add to Cart</Text>
+  </View>
+);
 
-// if (Platform.OS === 'ios') {
-//   starIcon = require('../assets/icons/ios-star-outline.png');
-// } else {
-//   starIcon = require('../assets/icons/md-star.png');
-// }
 const ListItem = ({name, onFavoritePress, isFavorite}) => {
   let starIcon;
   if (isFavorite) {
@@ -60,15 +71,23 @@ const ListItem = ({name, onFavoritePress, isFavorite}) => {
     });
   }
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>{name}</Text>
-      {onFavoritePress && (
-        <TouchableOpacity onPress={onFavoritePress}>
-          <Image source={starIcon} style={styles.icon} resizeMode="contain" />
-        </TouchableOpacity>
-      )}
-    </View>
+    <Swipeable renderLeftActions={LeftActions}>
+      <View style={styles.container}>
+        <Text style={styles.text}>{name}</Text>
+        {onFavoritePress && (
+          <TouchableOpacity onPress={onFavoritePress}>
+            <Image source={starIcon} style={styles.icon} resizeMode="contain" />
+          </TouchableOpacity>
+        )}
+      </View>
+    </Swipeable>
   );
 };
 
 export default ListItem;
+
+// if (Platform.OS === 'ios') {
+//   starIcon = require('../assets/icons/ios-star-outline.png');
+// } else {
+//   starIcon = require('../assets/icons/md-star.png');
+// }
