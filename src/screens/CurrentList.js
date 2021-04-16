@@ -13,7 +13,7 @@ import {
 import nachos from '../data/nachos';
 import ListItem, {Separator} from '../components/ListItem';
 import AddItem from '../components/AddItem';
-import { useCurrentList } from './../util/LIstManager';
+import { useCurrentList } from '../util/ListManager';
 
 export default () => {
   const {list, loading, addItem, removeItem} = useCurrentList();
