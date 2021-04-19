@@ -1,4 +1,5 @@
 import React from 'react';
+import {Text} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import CurrentList from '../screens/CurrentList';
@@ -17,7 +18,17 @@ const CurrentListStack = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="CurrentList" component={CurrentList} />
-        <Stack.Screen name="ItemDetails" component={ItemDetails} />
+        <Stack.Screen
+          name="ItemDetails"
+          component={ItemDetails}
+          options={({route}) => {
+            return {
+              headerTitle: () => {
+                return <Text>{route.params.item.name}</Text>;
+              },
+            };
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
