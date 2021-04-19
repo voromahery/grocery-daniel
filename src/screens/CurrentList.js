@@ -6,12 +6,12 @@ import {
   SafeAreaView,
   ScrollView,
   Button,
-  FlatList,
+  SectionList,
   KeyboardAvoidingView,
   ActivityIndicator,
 } from 'react-native';
 import nachos from '../data/nachos';
-import ListItem, {Separator} from '../components/ListItem';
+import ListItem, {Separator, SectionHeader} from '../components/ListItem';
 import AddItem from '../components/AddItem';
 import {useCurrentList} from '../util/ListManager';
 
@@ -24,7 +24,7 @@ export default ({navigation}) => {
     cart,
     addToCart,
   } = useCurrentList();
-  console.log(cart, "CART");
+
   if (loading) {
     return (
       <SafeAreaView>
@@ -36,8 +36,15 @@ export default ({navigation}) => {
   return (
     <SafeAreaView style={{flex: 1}}>
       <KeyboardAvoidingView style={{flex: 1}} behavior="padding">
-        <FlatList
-          data={list}
+        <SectionList
+          sections={[
+            {title: 'List', data: list},
+            {title: 'Cart', data: cart},
+          ]}
+          renderSectionHeader={({section}) => (
+            <SectionHeader title={section.title} />
+          )}
+          // data={list}
           renderItem={({item, index}) => (
             <ListItem
               name={item.name}
