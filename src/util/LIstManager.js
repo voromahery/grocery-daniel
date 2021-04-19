@@ -1,11 +1,12 @@
 import {useEffect, useState} from 'react';
-import 'react-native-get-random-values'
+import 'react-native-get-random-values';
 import {v4 as uuid} from 'uuid';
 import AsyncStorage from '@react-native-community/async-storage';
 
 export const useCurrentList = () => {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [cart, setCart] = useState([]);
 
   const addItem = text => {
     const newList = [{id: uuid(), name: text}, ...list];
@@ -21,6 +22,12 @@ export const useCurrentList = () => {
     const newList = list.filter(item => item.id !== id);
     setList(newList);
     updateStoreCurrentList(newList);
+  };
+
+  const addToCart = item => {
+    removeItem(item.id);
+    const newCart = [item, ...cart];
+    setCart(newCart);
   };
 
   useEffect(() => {
@@ -41,5 +48,7 @@ export const useCurrentList = () => {
     loading,
     addItem,
     removeItem,
+    addToCart,
+    cart,
   };
 };

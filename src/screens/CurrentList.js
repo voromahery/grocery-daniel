@@ -16,11 +16,18 @@ import AddItem from '../components/AddItem';
 import {useCurrentList} from '../util/ListManager';
 
 export default ({navigation}) => {
-  const {list, loading, addItem, removeItem} = useCurrentList();
+  const {
+    list,
+    loading,
+    addItem,
+    removeItem,
+    cart,
+    addToCart,
+  } = useCurrentList();
+  console.log(cart, "CART");
   if (loading) {
     return (
       <SafeAreaView>
-        {/* <ActivityIndicator size="large" /> */}
         <Text>Loading...</Text>
       </SafeAreaView>
     );
@@ -36,7 +43,7 @@ export default ({navigation}) => {
               name={item.name}
               onFavoritePress={() => alert('todo: handle favorite')}
               isFavorite={index < 2}
-              onAddedSwipe={() => removeItem(item.id)}
+              onAddedSwipe={() => addToCart(item)}
               onDeleteSwipe={() => removeItem(item.id)}
               onRowPress={() => {
                 navigation.navigate('ItemDetails', {item});
