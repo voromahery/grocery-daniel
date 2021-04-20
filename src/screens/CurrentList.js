@@ -39,12 +39,11 @@ export default ({navigation}) => {
         <SectionList
           sections={[
             {title: 'List', data: list},
-            {title: 'Cart', data: cart},
-          ]}
-          renderSectionHeader={({section}) => (
-            <SectionHeader title={section.title} />
-          )}
-          // data={list}
+            {title: 'Cart', data: cart}]}
+            renderSectionHeader= {({section}) => (
+              <SectionHeader title={section.title}/>
+            )} 
+           // data={list}
           renderItem={({item, index}) => (
             <ListItem
               name={item.name}

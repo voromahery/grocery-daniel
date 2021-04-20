@@ -41,7 +41,7 @@ const Tab = createBottomTabNavigator();
 const FavoritesListStack = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="FavoritesList" component={FavoritesList} />
+      <Stack.Screen name="FavoriteList" component={FavoritesList} />
     </Stack.Navigator>
   );
 };
