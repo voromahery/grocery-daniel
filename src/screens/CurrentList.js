@@ -23,6 +23,9 @@ export default ({navigation}) => {
     removeItem,
     cart,
     addToCart,
+    favorite,
+    setFavorite,
+    addToFavorite
   } = useCurrentList();
 
   if (loading) {
@@ -47,7 +50,8 @@ export default ({navigation}) => {
           renderItem={({item, index}) => (
             <ListItem
               name={item.name}
-              onFavoritePress={() => alert('todo: handle favorite')}
+              onFavoritePress={() => addToFavorite(item)}
+              unFavoritePress={() => alert("jhkjhjhg")}
               isFavorite={index < 2}
               onAddedSwipe={() => addToCart(item)}
               onDeleteSwipe={() => removeItem(item.id)}

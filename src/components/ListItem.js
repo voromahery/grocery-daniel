@@ -111,6 +111,7 @@ const ListItem = ({
   onAddedSwipe,
   onDeleteSwipe,
   onRowPress,
+  unFavoritePress
 }) => {
   let starIcon;
   if (isFavorite) {
@@ -134,6 +135,7 @@ const ListItem = ({
         <View style={styles.container}>
           <Text style={styles.text}>{name}</Text>
           {onFavoritePress && (
+            <>
             <TouchableOpacity onPress={onFavoritePress}>
               <Image
                 source={starIcon}
@@ -141,7 +143,16 @@ const ListItem = ({
                 resizeMode="contain"
               />
             </TouchableOpacity>
+            <TouchableOpacity onPress={unFavoritePress}>
+            <Image
+              source={starIcon}
+              style={styles.icon}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+          </>
           )}
+
         </View>
       </TouchableOpacity>
     </Swipeable>
